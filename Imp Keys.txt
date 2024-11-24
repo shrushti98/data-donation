@@ -1,0 +1,22 @@
+EC2 Instance for backend:
+
+
+
+Public IPv4 address
+
+3.12.198.71 
+
+
+Public IPv4 DNS
+
+ec2-3-12-198-71.us-east-2.compute.amazonaws.com
+
+
+For Frontend link:
+http://my-app-frontend-bucket.s3-website.us-east-2.amazonaws.com
+
+Frontend S3:
+my-app-frontend-bucket
+
+ssh connections for EC2
+ssh -i "DataDonation.pem" ubuntu@ec2-3-12-198-71.us-east-2.compute.amazonaws.com

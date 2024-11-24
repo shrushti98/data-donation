@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Sign Up</title>
+    <link rel="stylesheet" href="style\common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- Include the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">
+                    <li><button onclick="darkMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-moon" style="color: #0b0047"></i>
+                    </button></li>
+                    <li><button onclick="lightMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-sun" style="color:yellow"></i>
+                    </button></li>
+                </div>    
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem; width: 450px; margin: auto;">
+            <div class="card" style="padding: 8%; width: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+                <h1>Sign Up</h1>     
+            <form id="signupForm">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                <input type="submit" value="Sign Up" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+            </form>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sign up functionality to be implemented');
+        });
+    </script>
+    <script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>
+    <script src="script\script.js"></script>
+</body>
+</html>

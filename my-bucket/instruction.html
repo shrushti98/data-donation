@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Instructions</title>
+    <link rel="stylesheet" href="style\common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+    <style>
+        .instruction-step {
+            margin-bottom: 30px;
+        }
+        .instruction-step img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">
+                    <li><button onclick="darkMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-moon" style="color: #0b0047"></i>
+                    </button></li>
+                    <li><button onclick="lightMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-sun" style="color:yellow"></i>
+                    </button></li>
+                </div>    
+            </ul>
+        </nav>
+    </header>
+
+    <main style="justify-content: space-between; text-align: justify;">
+        <div class="container">
+            <h1>Instructions</h1>
+            <div class="instruction-step">
+                <h2>Step 1: Create an Account</h2>
+                <img src="/api/placeholder/800/400" alt="Step 1: Create an Account">
+                <p>Click on the "Sign Up" button and fill out the registration form.</p>
+            </div>
+            <div class="instruction-step">
+                <h2>Step 2: Log In</h2>
+                <img src="/api/placeholder/800/400" alt="Step 2: Log In">
+                <p>Enter your email and password to log in to your account.</p>
+            </div>
+            <div class="instruction-step">
+                <h2>Step 3: Upload Your Data</h2>
+                <img src="/api/placeholder/800/400" alt="Step 3: Upload Your Data">
+                <p>Go to the home page and use the "Upload/Submit Your File" card to upload your data.</p>
+            </div>
+            <div class="instruction-step">
+                <h2>Step 4: Start Annotation</h2>
+                <img src="/api/placeholder/800/400" alt="Step 4: Start Annotation">
+                <p>Click on the "Start Annotation" button in the Annotation card to begin the annotation process.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+    <!--<script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>-->
+    <script src="script\script.js"></script>
+</body>
+</html>

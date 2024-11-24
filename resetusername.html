@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Username</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <style></style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="login.html">Login</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+<main>
+    <h2>Reset Your Username</h2>    
+    <form id="resetUsernameForm">
+        <input id="resetEmail" type="email" placeholder="Email" required /><br>
+        <input id="resetOtp" type="text" placeholder="OTP" required /><br>
+        <input id="resetNewUsername" type="text" placeholder="New Username" required /><br>
+        <input id="resetConfirmUsername" type="text" placeholder="Confirm Username" required /><br>
+        <button type="submit" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+            Reset</button>
+        <p id="resetUsernameMessage"></p>
+    </form>
+</main>
+<footer>
+    <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+</footer>
+<script>
+    // Reset Username
+    const API_URL = 'http://3.12.198.71:5000'; // Replace with your EC2 public IP
+    document.getElementById('resetUsernameForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('resetEmail').value;
+        const otp = document.getElementById('resetOtp').value;
+        const newUsername = document.getElementById('resetNewUsername').value;
+        const confirmUsername = document.getElementById('resetConfirmUsername').value;
+
+        try {
+            const response = await fetch(`${API_URL}/reset-username`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, otp, new_username: newUsername, confirm_username: confirmUsername }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert('Username reset successful! You can now log in.');
+                window.location.href = 'login.html'; // Redirect to login page
+            } else {
+                document.getElementById('resetUsernameMessage').innerText = data.error || 'Error occurred.';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('resetUsernameMessage').innerText = 'An error occurred.';
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Home</title>
+    <link rel="stylesheet" href="style\common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+    <!--<style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .card {
+            width: calc(25% - 20px);
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>-->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">                   
+                        <li><button onclick="darkMode()">
+                            <i class="fas fa-moon fa-fade" style="color: #0b0047"></i>
+                        </button></li>
+                        <li><button onclick="lightMode()">
+                            <i class="fas fa-sun fa-flip" style="color:rgb(216, 216, 3)"></i>
+                        </button></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!--<div class="container">-->
+        <h2>Welcome to Data Sharing Platform</h2>
+
+        <!-- Progress Bar and Badges -->
+        <section id="badges">
+            <h3 style="color: #ee44b0;">Your Progress for Instagram</h3>
+                <div class="progress-container" id="progressBar1" style="margin-left: 20%;"></div>
+            </div>
+
+            <div class="badges-container">
+                <h4>Earned Badges:&nbsp;&nbsp;</h4><br><br>
+                <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #dfb007;"></i></button>&nbsp;&nbsp;&nbsp;
+                <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #ababab;"></i></button>&nbsp;&nbsp;&nbsp;
+                <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #603d34;"></i></button>
+
+            </div>
+        </section>    
+            <!--Instagram Data-->
+            <p><h3><i class="fa-brands fa-instagram fa-xl fa-flip" style="color: #f202a6;"></i>&nbsp;Instagram Data</h3></p>
+            <div class="card-row">
+                <!-- Card 1: Upload/Submit Your File -->
+                <div class="card">
+                    <h3>Upload/Submit Your File</h3>
+                    <input type="file" class="fileUpload"><br><br>
+                    <!-- Dropdown to select file type -->
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="toggleDropdown(this)">Type Of File</button>
+                        <div class="dropdown-content">
+                            <p onclick="selectFileType(this, 'Messages')">Messages</p>
+                            <p onclick="selectFileType(this, 'Likes')">Likes</p>
+                            <p onclick="selectFileType(this, 'Comments')">Comments</p>
+                            <p onclick="selectFileType(this, 'Posts')">Posts</p>
+                            <p onclick="selectFileType(this, 'Profile Pictures')">Profile Pictures</p>
+                            <p onclick="selectFileType(this, 'Stories')">Stories</p>
+                            <p onclick="selectFileType(this, 'Followings')">Followings</p>
+                            <p onclick="selectFileType(this, 'Followers')">Followers</p>
+                        </div>
+                    </div>
+                    <!-- Display selected file type -->
+                    <p class="selectedType">No file type selected</p>
+                    <p class="fileName"></p>
+                    <button onclick="uploadFile(this)" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Upload</button>
+                </div>
+                <!-- Card 2: Link to Instruction Page -->
+                <div class="card">
+                    <h3>Instructions</h3>
+                    <a href="instruction.html" class="button">View Instructions</a>
+                    <br><br><br>
+                    <a href="#" class="button">Survey</a>
+                </div>
+                <!-- Card 3: Status -->
+                <div class="card">
+                    <h3>Status</h3>
+                    <!--<p style="color: #fc0303;">Quick Stat</p>-->
+                    <p>Status: <span id="status" style="color: #29a304;">Received</span></p>
+                    <div class="progress-container" id="progressBar5" style="margin-left: 20%;"></div>
+                </div>
+
+                <!-- Card 4: Annotation Button -->
+                <div class="card">
+                    <h3>Annotation</h3><br>
+                    <a href="annotation.html" class="button">Annotate My Data Now</a>
+                </div>
+            </div>
+
+            <!-- Progress Bar and Badges -->
+            <section id="badges">
+                <h3>Your Progress for TikTok</h3>
+                    <div class="progress-container" id="progressBar2" style="margin-left: 20%;"></div>
+                </div>
+
+                <div class="badges-container">
+                    <h4>Earned Badges:&nbsp;&nbsp;</h4><br><br>
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #dfb007;"></i></button>&nbsp;&nbsp;&nbsp;
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #ababab;"></i></button>&nbsp;&nbsp;&nbsp;
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #603d34;"></i></button>
+
+                </div>
+            </section> 
+
+            <!--TikTok Data-->
+            <p><h3><i class="fa-brands fa-tiktok fa-xl fa-flip"></i>&nbsp;TikTok Data</h3></p>
+            <div class="card-row">
+                <!-- Card 1: Upload/Submit Your File -->
+                <div class="card">
+                    <h3>Upload/Submit Your File</h3>
+                    <input type="file" id="fileUpload"><br><br>
+                    <!-- Dropdown to select file type -->
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="toggleDropdown(this)">Type Of File</button>
+                        <div class="dropdown-content">
+                            <p onclick="selectFileType(this, 'Messages')">Messages</p>
+                            <p onclick="selectFileType(this, 'Likes')">Likes</p>
+                            <p onclick="selectFileType(this, 'Comments')">Comments</p>
+                            <p onclick="selectFileType(this, 'Posts')">Posts</p>
+                            <p onclick="selectFileType(this, 'Profile Pictures')">Profile Pictures</p>
+                            <p onclick="selectFileType(this, 'Stories')">Stories</p>
+                            <p onclick="selectFileType(this, 'Followings')">Followings</p>
+                            <p onclick="selectFileType(this, 'Followers')">Followers</p>
+                        </div>
+                    </div>
+                    <!-- Display selected file type -->
+                    <p id="selectedType">No file type selected</p>
+                    <p id="fileName"></p>
+                    <button onclick="uploadFile(this)" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Upload</button>
+                </div>
+                <!-- Card 2: Link to Instruction Page -->
+                <div class="card">
+                    <h3>Instructions</h3>
+                    <a href="instruction.html" class="button">View Instructions</a>
+                    <br><br><br>
+                    <a href="#" class="button">Survey</a>
+                </div>
+                <!-- Card 3: Status -->
+                <div class="card">
+                    <h3>Status</h3>
+                    <p>Status: <span id="status" style="color: #29a304;">Received</span></p>
+                    <div class="progress-container" id="progressBar6" style="margin-left: 20%;"></div>
+                </div>
+                <!-- Card 4: Annotation Button -->
+                <div class="card">
+                    <h3>Annotation</h3><br><br>
+                    <button onclick="startAnnotation()" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Annotate My Data Now</button>
+                </div>
+            </div> 
+
+            <!-- Progress Bar and Badges -->
+            <section id="badges">
+                <h3 style="color: #948607;">Your Progress for Snapchat</h3>
+                    <div class="progress-container" id="progressBar3" style="margin-left: 20%;"></div>
+                </div>
+
+                <div class="badges-container">
+                    <h4>Earned Badges:&nbsp;&nbsp;</h4><br><br>
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #dfb007;"></i></button>&nbsp;&nbsp;&nbsp;
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #ababab;"></i></button>&nbsp;&nbsp;&nbsp;
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #603d34;"></i></button>
+
+                </div>
+            </section>
+
+            <!--Snapchat Data-->
+            <p><h3><i class="fa-brands fa-snapchat fa-xl fa-flip" style="color: #FFD43B;"></i>&nbsp;Snapchat Data</h3></p>   
+            <div class="card-row">
+                <!-- Card 1: Upload/Submit Your File -->
+                <div class="card">
+                    <h3>Upload/Submit Your File</h3>
+                    <input type="file" id="fileUpload"><br><br>
+                    <!-- Dropdown to select file type -->
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="toggleDropdown(this)">Type Of File</button>
+                        <div class="dropdown-content">
+                            <p onclick="selectFileType(this, 'Messages')">Messages</p>
+                            <p onclick="selectFileType(this, 'Likes')">Likes</p>
+                            <p onclick="selectFileType(this, 'Comments')">Comments</p>
+                            <p onclick="selectFileType(this, 'Posts')">Posts</p>
+                            <p onclick="selectFileType(this, 'Profile Pictures')">Profile Pictures</p>
+                            <p onclick="selectFileType(this, 'Stories')">Stories</p>
+                            <p onclick="selectFileType(this, 'Followings')">Followings</p>
+                            <p onclick="selectFileType(this, 'Followers')">Followers</p>
+                        </div>
+                    </div>
+                    <!-- Display selected file type -->
+                    <p id="selectedType">No file type selected</p>
+                    <p id="fileName"></p>
+                    <button onclick="uploadFile(this)" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Upload</button>
+                </div>
+                <!-- Card 2: Link to Instruction Page -->
+                <div class="card">
+                    <h3>Instructions</h3>
+                    <a href="instruction.html" class="button">View Instructions</a>
+                </div>
+                <!-- Card 3: Status -->
+                <div class="card">
+                    <h3>Status</h3>
+                    <p>Status: <span id="status" style="color: #29a304;">Received</span></p>
+                    <div class="progress-container" id="progressBar7" style="margin-left: 20%;"></div>
+                </div>
+                <!-- Card 4: Annotation Button -->
+                <div class="card">
+                    <h3>Annotation</h3>
+                    <button onclick="startAnnotation()" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Annotate Now</button>
+                </div>
+            </div>
+
+            <!-- Progress Bar and Badges -->
+            <section id="badges">
+                <h3 style="color: #a00303;">Your Progress for YouTube</h3>
+                    <div class="progress-container" id="progressBar4" style="margin-left: 20%;"></div>
+                </div>
+
+                <div class="badges-container">
+                    <h4>Earned Badges:&nbsp;&nbsp;</h4><br><br>
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #dfb007;"></i></button>&nbsp;&nbsp;&nbsp;
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #ababab;"></i></button>&nbsp;&nbsp;&nbsp;
+                    <button><i class="fa-solid fa-medal fa-fade fa-2xl" style="color: #603d34;"></i></button>
+
+                </div>
+            </section>    
+
+            <!--Youtube Data--> 
+            <p><h3><i class="fa-brands fa-youtube fa-xl fa-flip" style="color: #fc0303;"></i>&nbsp;Youtube Data</h3></p>   
+            <div class="card-row">          
+                <!-- Card 1: Upload/Submit Your File -->
+                <div class="card">
+                    <h3>Upload/Submit Your File</h3>
+                    <input type="file" id="fileUpload"><br><br>
+                    <!-- Dropdown to select file type -->
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="toggleDropdown(this)">Type Of File</button>
+                        <div class="dropdown-content">
+                            <p onclick="selectFileType(this, 'Messages')">Messages</p>
+                            <p onclick="selectFileType(this, 'Likes')">Likes</p>
+                            <p onclick="selectFileType(this, 'Comments')">Comments</p>
+                            <p onclick="selectFileType(this, 'Posts')">Posts</p>
+                            <p onclick="selectFileType(this, 'Profile Pictures')">Profile Pictures</p>
+                            <p onclick="selectFileType(this, 'Stories')">Stories</p>
+                            <p onclick="selectFileType(this, 'Followings')">Followings</p>
+                            <p onclick="selectFileType(this, 'Followers')">Followers</p>
+                        </div>
+                    </div>
+                    <!-- Display selected file type -->
+                    <p id="selectedType">No file type selected</p>
+                    <p id="fileName"></p>
+                    <button onclick="uploadFile(this)" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Upload</button>
+                </div>
+                <!-- Card 2: Link to Instruction Page -->
+                <div class="card">
+                    <h3>Instructions</h3>
+                    <a href="instruction.html" class="button">View Instructions</a>
+                </div>
+                <!-- Card 3: Status -->
+                <div class="card">
+                    <h3>Status</h3>
+                    <p>Status: <span id="status" style="color: #29a304;">Received</span></p>
+                    <div class="progress-container" id="progressBar8" style="margin-left: 20%;"></div>
+                </div>
+                <!-- Card 4: Annotation Button -->
+                <div class="card">
+                    <h3>Annotation</h3>
+                    <button onclick="startAnnotation()" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Annotate Now</button>
+                </div>
+            </div>    
+            </div>
+        <!--</div>-->
+    </main>
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to toggle dropdown visibility with slide effect
+        function toggleDropdown(button) {
+            const dropdownContent = button.nextElementSibling;
+            dropdownContent.classList.toggle('show');
+        }
+
+        // Function to select file type and close the dropdown
+        function selectFileType(element, type) {
+            const selectedTypeDisplay = element.closest('.card').querySelector('.selectedType');
+            selectedTypeDisplay.innerText = "Selected File Type: " + type;
+            element.closest('.dropdown-content').classList.remove('show');
+        }
+
+        // Function to handle file upload
+        function uploadFile(button) {
+            const card = button.closest('.card');
+            const fileInput = card.querySelector('.fileUpload');
+            const fileNameDisplay = card.querySelector('.fileName');
+            const selectedTypeDisplay = card.querySelector('.selectedType').innerText;
+
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file selected';
+            fileNameDisplay.innerText = fileName;
+
+            if (selectedTypeDisplay === "No file type selected") {
+                alert('Please select a file type before uploading.');
+            } else if (fileName === 'No file selected') {
+                alert('Please select a file before uploading.');
+            } else {
+                alert(`File Name: ${fileName}\n${selectedTypeDisplay}`);
+                // Additional file upload logic can go here
+            }
+        }
+    </script>
+
+<!--
+    <script>// Code for Card 1 Upload section
+        let selectedFileType = ''; // Variable to store the selected file type
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        // Function to toggle the dropdown visibility with sliding effect
+        function toggleDropdown() {
+//                dropdownContent.classList.toggle('show');
+            if (dropdownContent.classList.contains('show')) {
+                dropdownContent.classList.remove('show');
+            } else {
+                dropdownContent.classList.add('show');
+            }
+        }
+
+        // Function to handle file type selection
+        function selectFileType(type) {
+            selectedFileType = type;
+            document.getElementById('selectedType').innerText = "Selected File Type: " + selectedFileType;
+            toggleDropdown(); // Slide up (close) the dropdown after selecting an option
+        }
+
+        // Function to upload file (currently just logs the details)
+        function uploadFile() {
+            const fileInput = document.getElementById('fileUpload');
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file selected';
+            document.getElementById('fileName').innerText = fileName;
+
+            // Log the selected file and file type
+            if (selectedFileType === '') {
+                alert('Please select a file type before uploading.');
+            } else if (fileName === 'No file selected') {
+                alert('Please select a file before uploading.');
+            } else {
+                alert(`File Name: ${fileName}\nFile Type: ${selectedFileType}\nFile Uploaded Successfully!`);
+                // Code to handle file upload can be added here
+            }
+        }
+    </script>
+    
+    <script>//Code for Dark mode Toggle
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>-->
+    <script src="script\script.js"></script>
+
+    <!-- Configuration and Main Scripts -->
+    <script src="script/config.js"></script>
+    <script src="script/app.js"></script>
+    
+</body>
+</html>

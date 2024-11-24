@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Sign Up</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Include the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">
+                    <li><button id="logoutButton"  onclick="logout()">
+                        <i class="fa-solid fa-power-off" style="color: #8f02ed;"></i></button></li>
+                    <li><button onclick="darkMode()">
+                        <i class="fas fa-moon fa-fade" style="color: #0b0047"></i>
+                    </button></li>
+                    <li><button onclick="lightMode()">
+                        <i class="fas fa-sun fa-fade" style="color:rgb(216, 216, 3)"></i>
+                    </button></li>
+                </div>    
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem; width: 450px; margin: auto;">
+            <div class="card" style="padding: 8%; width: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+                <h1>Sign Up</h1>     
+            <form id="signupForm">
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                <input type="submit" id="signup" value="Sign Up" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+                <p id="signupErrorMessage"></p>
+            </form>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+
+    <!--<script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sign up functionality to be implemented');
+        });
+    </script>-->
+
+    <script>
+        const API_URL = 'http://3.12.198.71:5000'; // Replace with your EC2 public IP
+
+        // Registration
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent form submission
+
+            // Collect form values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+
+            // Get Qualtrics ID from the URL
+            //const qualtricsId = new URLSearchParams(window.location.search).get('qualtrics_id');
+            const qualtricsId = "12345ABC";
+            
+
+            // Clear any previous error messages
+            document.getElementById('signupErrorMessage').innerText = '';
+            try {
+                // Send Registration Request to Backend
+                const response = await fetch(`${API_URL}/register?qualtrics_id=${qualtricsId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        confirm_password: confirmPassword,
+                        email,
+                        name,
+                    }),
+                });
+                // Parse Backend Response
+                const data = await response.json();
+                console.log("Backend response:", data); // Debugging log
+                if (!response.ok) {
+                    document.getElementById('signupErrorMessage').innerText = data.error || 'An unexpected error occurred.';
+                    return;
+                }
+                // Handle success
+                sessionStorage.setItem('username', username);
+                alert("If an account exists, we’ve sent you an email with a one-time password to complete your registration. If you don’t see the email, kindly check your spam or junk folder");
+                window.location.href='verifyuser.html';
+            } catch (error) {
+                // Handle Unexpected Errors
+                console.error('Error:', error);
+                document.getElementById('signupErrorMessage').innerText = 'An unexpected error occurred. Please try again later.';
+            }
+        });
+    </script>
+
+    <script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

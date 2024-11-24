@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Instructions</title>
+    <link rel="stylesheet" href="style\common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+    <style>
+        .instruction-step {
+            margin-bottom: 30px;
+        }
+        .instruction-step img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">
+                    <li><button onclick="enableDarkMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-moon" style="color: #0b0047"></i>
+                    </button></li>
+                    <li><button onclick="enableLightMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-sun" style="color:yellow"></i>
+                    </button></li>
+                </div>    
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Resources Page</h2>
+        <p style="justify-content: left; text-align: left; text-size-adjust: 30%; margin-left: 3%;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;988 Suicide & Crisis Hotline: “Call or text 988 or chat online to connect with a trained crisis counselor.<br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Lifeline provides 24-hour, confidential support to anyone in suicidal crisis or emotional distress. You can reach a specialized LGBTQI+ affirming counselor by texting “Q” to 988 or by calling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;988 and pressing “3.”<br> <br>
+             <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>
+             <a href="https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health">National Institute of Mental Health (NIMH)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caring for Your Mental Health<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mental health includes emotional, psychological, and social well-being. It affects how we think, feel, act, make choices, and relate to others.</a><br><br>
+            
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>
+            <a href="https://www.verywellmind.com/therapy-7092217">Therapy Center</a><br><br>
+            
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>   
+            <a href="https://www.verywellmind.com/stress-management-overview-4581770">Stress Management</a><br><br>
+            
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>   
+            <a href="https://findtreatment.gov/">Find state-licensed treatment near you for addiction and substance use disorder.</a><br><br> 
+
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>
+            <a href="https://mentalhealthhotline.org/">National Mental Health Hotline | 866-903-3787<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Mental Health Hotline is a free, confidential 24-hour hotline for anyone struggling with depression, anxiety, or any mental health crisis. Call Free Now.</a><br><br>
+            
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>
+            <a herf="https://www.nimh.nih.gov/health/find-help">Help for Mental Illnesses - National Institute of Mental Health</a><br><br>
+
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>    
+            <a href="https://directory.choosingtherapy.com/directory">Find A Therapist</a><br><br>
+
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>    
+            <a href="https://garrettcounseling.com/positive-social-media-accounts-to-follow/">Positive Social Media Accounts To Follow</a><br><br>
+
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>    
+            <a href="https://garrettcounseling.com/apps-that-help-anxiety/">Apps That Help Anxiety</a><br><br>
+
+            <i class="fa-solid fa-link fa-fade" style="color: #916ff7;"></i>    
+            <a href="https://garrettcounseling.com/online-counseling-services/">Online Counseling Services</a><br><br>
+            
+        </p>
+        <img src="/images/NIMH.jpg" alt="National Mental Health Hotline" width="1000" height="500" style="align-items: center;">
+    </main>
+
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Check for saved dark mode preference on page load
+        window.onload = function() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                enableDarkMode(); // Set dark mode if saved preference is true
+            } else {
+                enableLightMode(); // Default to light mode if no preference
+            }
+        };
+
+        // Enable Dark Mode and Save Preference
+        function enableDarkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+            localStorage.setItem('darkMode', 'true'); // Save preference
+        }
+
+        // Enable Light Mode and Save Preference
+        function enableLightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+            localStorage.setItem('darkMode', 'false'); // Save preference
+        }
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                enableLightMode(); // Switch to light mode if currently in dark mode
+            } else {
+                enableDarkMode(); // Switch to dark mode if currently in light mode
+            }
+        }
+
+    </script>
+    <!--<script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>
+    <script src="script\script.js"></script>-->
+</body>
+</html>

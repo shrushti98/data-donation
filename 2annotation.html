@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Chat Annotation</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles (shared across modes) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Annotation container */
+        #annotation-container {
+            display: flex;
+            width: 97%;
+            height: 93vh;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Sidebar for contacts */
+        #user-list {
+            width: 25%;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #contacts {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        #contacts li {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        #contacts input[type="radio"] {
+            margin-left: 5px; /* Adds extra space between the text and the radio button */
+            margin-right: 50px;
+        }
+
+        /* Chat box */
+        #chat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+        }
+
+        #chat-header {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            /*
+            justify-content: space-between;
+            border-bottom: 1px solid #333;*/
+        }
+
+        #messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            transition: background-color 0.3s ease;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .message.self .content {
+            background-color: #d5c6f8; /* Purple for self messages */
+            margin-left: auto;
+        }
+
+        .message.other .content {
+            background-color: #a8a8a8; /* Gray for other messages */
+            border: 1px solid #ddd;
+        }
+
+        .message.self {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .message.other {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .content {
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 70%;
+            /*max-width: 60%;*/
+            transition: background-color 0.3s ease;
+        }
+
+        /* Annotation options */
+        #annotation-options {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.3s ease;
+        }
+
+        textarea {
+            width: 100%;
+            resize: none;
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+        }
+        
+        .sender-title {
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 2px;
+        }
+
+        .timestamp {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+            text-align: right;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background-color: #121212; /* Dark background for body */
+            color: #E0E0E0; /* Light text color */
+        }
+
+        body.dark-mode #annotation-container {
+            background-color: #1d1d1d; /* Dark chat box */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode #user-list {
+            background-color: #2a2a2a; /* Dark background for sidebar */
+            border-right: 1px solid #444; /* Subtle border */
+        }
+
+        body.dark-mode #chat-header {
+            background-color: #1a1a1a;
+        }
+
+        body.dark-mode #messages {
+            background-color: #1d1d1d; /* Dark background for messages */
+        }
+
+        body.dark-mode .message.self .content {
+            background-color: #3d3d7f; /* Slightly darker purple */
+        }
+
+        body.dark-mode .message.other .content {
+            background-color: #555; /* Dark gray */
+            border-color: #333;
+        }
+
+        body.dark-mode #contacts li {
+            background-color: #2a2a2a;
+            border-color: #444;
+        }
+
+        body.dark-mode #contacts li:hover {
+            background-color: #333; /* Highlight on hover */
+        }
+
+        body.dark-mode #annotation-options {
+            background-color: #1a1a1a;
+        }
+
+        /* Light mode */
+        body.light-mode {
+            background-color: #ffffff; /* Light background for body */
+            color: #121212; /* Dark text color */
+        }
+
+        body.light-mode #annotation-container {
+            background-color: #f0f0f0; /* Light chat box */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode #user-list {
+            background-color: #f7f7f7; /* Light background for sidebar */
+            border-right: 1px solid #ddd;
+        }
+
+        body.light-mode #chat-header {
+            background-color: #f1f1f1;
+        }
+
+        body.light-mode #messages {
+            background-color: #f9f9f9; /* Light background for messages */
+        }
+
+        body.light-mode .message.self .content {
+            background-color: #d5c6f8; /* Purple remains the same */
+        }
+
+        body.light-mode .message.other .content {
+            background-color: #a8a8a8; /* Light gray */
+            border-color: #ddd;
+        }
+
+        body.light-mode #contacts li {
+            background-color: #ffffff;
+            border-color: #ddd;
+        }
+
+        body.light-mode #contacts li:hover {
+            background-color: #f0f0f0; /* Highlight on hover */
+        }
+
+        body.light-mode #annotation-options {
+            background-color: #f1f1f1;
+        }
+
+    </style>
+</head>
+<body class="dark-mode">
+    <div id="annotation-container">
+        <!-- Sidebar for contacts -->
+        <div id="user-list">
+            <h2>Contacts</h2>
+            <ul id="contacts">
+                <!-- Example Contact -->
+                <li>
+                    <span>Jonathan Pleis</span>   
+                </li>
+                <li>
+                    <span>Anna Peters</span>
+                </li>
+                <li>
+                    <span>Tanya Roberts</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Chat display and annotation options -->
+        <div id="chat-box">
+            <div id="chat-header">
+                <h2 id="chat-with">Jonathan Pleis</h2>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div style="align-self: self-end;">
+                    <button onclick="enableDarkMode()" class="dark-mode-btn" style="background-color: transparent; border: none; font-size: 20px; padding: 8px 15px;">
+                        🌙</button>
+                    <button onclick="enableLightMode()" class="light-mode-btn" style="background-color: transparent; border: none; font-size: 20px; padding: 8px 15px;">
+                        ☀️</button>
+                </div>
+            </div>
+            <div id="messages">
+                <!-- Example Messages -->
+                <div class="message self">
+                    <div class="sender-title">You</div>
+                    <div class="content">Hello! How are you doing?</div>
+                    <div class="timestamp">10:45 AM</div>
+                </div>
+                <div class="message other">
+                    <div class="sender-title">Jonathan Pleis</div>
+                    <div class="content">I'm doing well, thanks for asking!</div>
+                    <div class="timestamp">10:46 AM</div>
+                </div>
+            </div>
+
+            <!-- Annotation options -->
+            <div id="annotation-options">
+                <div>
+                    <label>Message Safety:</label><br>
+                    <input type="radio" name="message-safety" value="safe"> Safe <br>
+                    <input type="radio" name="message-safety" value="unsafe"> Unsafe
+                </div>
+                <div>
+                    <label>Risk Type:</label>
+                    <select id="risk-type">
+                        <option value="">Select</option>
+                        <option value="spam">Spam</option>
+                        <option value="harassment">Harassment</option>
+                        <option value="phishing">Phishing</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Severity:</label>
+                    <input type="range" id="severity" min="1" max="10">
+                </div>
+                <div>
+                    <label>Extra Context:</label>
+                    <textarea id="extra-context" rows="2" placeholder="Add extra details..."></textarea>
+                </div>
+                <button id="save-annotation" style="display: inline-block; padding: 10px 10px; background-color: #696969; color: white; text-decoration: none; font-size: 18px;">
+                    Save Annotation</button>
+                <a href="index.html" style="display: inline-block; padding: 8px 10px; background-color: #696969; color: white; text-decoration: none; font-size: 18px;">
+                    Home</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function enableDarkMode() {
+            document.body.classList.add("dark-mode");
+            document.body.classList.remove("light-mode");
+        }
+
+        function enableLightMode() {
+            document.body.classList.add("light-mode");
+            document.body.classList.remove("dark-mode");
+        }
+    </script>
+</body>
+</html>

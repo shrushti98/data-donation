@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Login</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <!-- Include the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">
+                    <li><button id="logoutButton"  onclick="logout()">
+                        <i class="fa-solid fa-power-off" style="color: #8f02ed;"></i></button></li>
+                    <li><button onclick="darkMode()">
+                        <i class="fas fa-moon fa-fade" style="color: #0b0047"></i>
+                    </button></li>
+                    <li><button onclick="lightMode()">
+                        <i class="fas fa-sun fa-fade" style="color:rgb(216, 216, 3)"></i>
+                    </button></li>
+                </div>    
+            </ul>
+        </nav>
+    </header>
+
+
+    <main style="justify-content: center">
+        <div class="container" style="padding: 2rem; width: 450px; margin: auto;">
+            <div class="card" style="padding: 8%; width: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+                <h1>Login</h1>
+                <form id="loginForm">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <!--<input type="submit" value="Login" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">-->
+                    <button type="button" onclick="onSubmit(e)" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+                        Login</button>
+                    <p class="error" id="loginErrorMessage"></p>
+                    <span class="toggle-link" onclick="showForgotPassword()">Forgot Password?</span>
+                    <span class="toggle-link" onclick="showForgotUsername()">Forgot Username?</span><br>
+                    <!--<span class="reset"><a href="resetpassword.html">Reset Password</a></span>-->
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </form>
+                
+            
+                <!-- Forgot Password Form -->
+                <form id="forgotPasswordForm" style="display: none;">
+                    <h3>Recover Password</h3>
+                    <div class="form-group">
+                        <input type="email" id="forgotPasswordEmail" placeholder="Enter your email" required style="padding: 4%; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    </div>
+                    <button type="submit" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+                        Send Reset Link</button>
+                    <p class="message" id="passwordMessage"></p>
+                    <span class="toggle-link" onclick="showLoginForm()">Back to Login</span>
+                </form>
+
+                <!-- Forgot Username Form -->
+                <form id="forgotUsernameForm" style="display: none;">
+                    <h3>Recover Username</h3>
+                    <div class="form-group">
+                        <input type="email" id="forgotUsernameEmail" placeholder="Enter your email" required style="padding: 4%; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    </div>
+                    <button type="submit" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Send Username</button>
+                    <p class="message" id="usernameMessage"></p>
+                    <span class="toggle-link" onclick="showLoginForm()">Back to Login</span>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+   
+
+    <!--<script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>-->
+    <!--
+    <script>
+        //Login code
+        const API_URL = 'http://3.12.198.71:5000'; // Replace with your EC2 public IP
+
+        // Manage session state
+        document.addEventListener('DOMContentLoaded', () => {
+            manageSessionState();
+        });
+        function manageSessionState() {
+            const logoutButton = document.getElementById('logoutButton');
+            const username = localStorage.getItem('username');
+            if (username) {
+                logoutButton.style.display = 'inline-block'; // Show logout button
+            } else {
+                logoutButton.style.display = 'none'; // Hide logout button
+            }
+        }
+
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json',},
+                    body: JSON.stringify({ username, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    // Store username in sessionStorage
+                    localStorage.setItem('username', username);
+                    const sUsername = localStorage.getItem('username');
+                    console.log('This is Username:',sUsername);
+                    //alert('Login successful!');
+                    window.location.href = 'index.html'; // Redirect on success
+                } else {
+                    document.getElementById('loginErrorMessage').innerText = data.error || 'Invalid credentials.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loginErrorMessage').innerText = 'An error occurred.';
+            }
+        });
+
+        // Toggle between forms
+        function showLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("forgotPasswordForm").style.display = "none";
+            document.getElementById("forgotUsernameForm").style.display = "none";
+            document.getElementById("formTitle").innerText = "Login";
+        }
+
+        function showForgotPassword() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("forgotPasswordForm").style.display = "block";
+            document.getElementById("forgotUsernameForm").style.display = "none";
+            document.getElementById("formTitle").innerText = "Forgot Password";
+        }
+
+        function showForgotUsername() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("forgotPasswordForm").style.display = "none";
+            document.getElementById("forgotUsernameForm").style.display = "block";
+            document.getElementById("formTitle").innerText = "Forgot Username";
+        }
+
+        // Forgot Password
+        document.getElementById('forgotPasswordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('forgotPasswordEmail').value;
+            //alert('Hey is it working!');
+            try {
+                const response = await fetch(`${API_URL}/forgot-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                });
+                //alert('entered forgot email code!');
+                const data = await response.json();
+                if (response.ok) {
+                    alert('One-Time-Password sent to your email.');
+                    window.location.href='resetpassword.html';
+                    alert("If the email exists in our records, we’ve sent you a one-time password to reset your Password. If you don’t see the email, check your spam or junk folder.");
+                } else {
+                    document.getElementById('forgotPasswordMessage').innerText = data.error || 'Error occurred.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('forgotPasswordMessage').innerText = 'An error occurred.';
+            }
+        });
+
+        // Forgot Username
+        document.getElementById('forgotUsernameForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('forgotUsernameEmail').value;
+
+            try {
+                const response = await fetch(`${API_URL}/forgot-username`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    //alert('One-Time-Password sent to your email.');
+                    window.location.href='resetusername.html';
+                    alert("If the email exists in our records, we’ve sent you a one-time password to reset your Username. If you don’t see the email, check your spam or junk folder.");
+                } else {
+                    document.getElementById('forgotUsernameMessage').innerText = data.error || 'Error occurred.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('forgotUsernameMessage').innerText = 'An error occurred.';
+            }
+        });
+    </script>
+    
+    <script>
+        // Logout functionality
+        function logout() {
+            // Clear username from localStorage and sessionStorage
+            //sessionStorage.removeItem('username');
+            // Notify server about logout (optional)
+            fetch(`${API_URL}/logout`, {
+                method: 'POST',
+            }).catch(err => console.error('Logout error:', err));
+            localStorage.removeItem('username');
+            // Redirect to login page
+            alert('You have logged out');
+            window.location.href = 'login.html';
+        }
+    </script>
+    <script>
+        //Logout
+        document.addEventListener('DOMContentLoaded', manageLogoutButton);
+
+        function manageLogoutButton() {
+            const isLoggedIn = checkUserLoggedIn();
+            alert('Im in logout');
+            // Get the logout button by its ID
+            const logoutButton = document.getElementById('logoutButton');
+
+            // Show the logout button if logged in, hide if not
+            if (isLoggedIn) {
+                logoutButton.style.display = 'inline-block';  // Or use 'block' depending on your layout
+            } else {
+                logoutButton.style.display = 'none';
+            }
+        }
+
+        document.getElementById("logoutButton").addEventListener("click", logout);
+
+        // Logout Function for JWT Authentication
+        function logout() {
+            alert('Im in logout 2');
+            // Clear the JWT from localStorage
+            localStorage.removeItem("authtoken");
+            
+            // Clear the JWT from sessionStorage (if used)
+            sessionStorage.removeItem("username");
+            
+            // Optionally notify the server to invalidate the token (if server-side invalidation is used)
+            fetch("/api/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // Include the token if required for server-side invalidation
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                }
+            }).catch(err => console.error("Server logout error:", err));
+
+            // Redirect the user to the login page
+            window.location.href = "login.html"; // Adjust URL as needed
+        }*/
+    </script>-->
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - About</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+    <style>
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        .about-text {
+            width: 60%;
+        }
+        .contact-form {
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">
+                    <li><button id="logoutButton"  onclick="logout()">
+                        <i class="fa-solid fa-power-off" style="color: #8f02ed;"></i></button></li>
+                    <li><button onclick="darkMode()">
+                        <i class="fas fa-moon fa-fade" style="color: #0b0047"></i>
+                    </button></li>
+                    <li><button onclick="lightMode()">
+                        <i class="fas fa-sun fa-flip" style="color:rgb(216, 216, 3)"></i>
+                    </button></li>
+                </div>    
+            </ul>
+        </nav>
+    </header>
+
+    <main style="justify-content: space-between; text-align: justify;">
+        <div class="container">
+            <h1>About Us</h1>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Writing effectively is an art. Start by using simple, everyday words people can easily understand. Be clear and direct to the point. Keep your thoughts flowing logically, and aim for brevity unless you're writing in the long form.</p>
+                    <p>Your ideas have a purpose so choose words that accurately express them. Ensure your grammar is flawless as it impacts your credibility. Use the active voice whenever possible as it makes any narrative easier to read.</p>
+                    <h2>Contact Us</h2>
+                    <p>Address: 123 Battery Street, Cityville</p>
+                    <p>Email: info@abc.com</p>
+                    <p>Phone: +123-456-7890</p>
+                </div>
+                <div class="contact-form">
+                    <h2>Feedback Form</h2>
+                    <form id="feedbackForm">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="tel" name="phone" placeholder="Phone Number">
+                        <textarea name="message" placeholder="Message" required></textarea>
+                        <input type="submit" value="Submit" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+
+    <!--<script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Feedback submitted successfully!');
+            this.reset();
+        });
+    </script>
+    <script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>-->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform - Login</title>
+    <link rel="stylesheet" href="style\common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <!-- Include the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">
+                    <li><button onclick="darkMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-moon" style="color: #0b0047"></i>
+                    </button></li>
+                    <li><button onclick="lightMode()" style="background-color: transparent; border: none; font-size: 20px;">
+                        <i class="fas fa-sun" style="color:yellow"></i>
+                    </button></li>
+                </div>    
+            </ul>
+        </nav>
+    </header>
+
+
+    <main style="justify-content: center">
+        <div class="container" style="padding: 2rem; width: 450px; margin: auto;">
+            <div class="card" style="padding: 8%; width: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+                <h1>Login</h1>
+                <form id="loginForm">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="submit" value="Login" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+                    <p class="error" id="loginErrorMessage"></p>
+                    <span class="toggle-link" onclick="showForgotPassword()">Forgot Password?</span>
+                    <span class="toggle-link" onclick="showForgotUsername()">Forgot Username?</span>
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </form>
+                
+            
+                <!-- Forgot Password Form -->
+                <form id="forgotPasswordForm" style="display: none;" onsubmit="recoverPassword(event)">
+                    <h3>Recover Password</h3>
+                    <div class="form-group">
+                        <input type="email" id="passwordEmail" placeholder="Enter your email" required style="padding: 4%; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    </div>
+                    <button type="submit" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Send Reset Link</button>
+                    <p class="message" id="passwordMessage"></p>
+                    <span class="toggle-link" onclick="showLoginForm()">Back to Login</span>
+                </form>
+
+                <!-- Forgot Username Form -->
+                <form id="forgotUsernameForm" style="display: none;" onsubmit="recoverUsername(event)">
+                    <h3>Recover Username</h3>
+                    <div class="form-group">
+                        <input type="email" id="usernameEmail" placeholder="Enter your email" required style="padding: 4%; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    </div>
+                    <button type="submit" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">Send Username</button>
+                    <p class="message" id="usernameMessage"></p>
+                    <span class="toggle-link" onclick="showLoginForm()">Back to Login</span>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>
+
+    <!--<script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality to be implemented');
+        });
+    </script>
+    <script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>-->
+    <script src="script\script.js"></script>
+</body>
+</html>

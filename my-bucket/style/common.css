@@ -1,0 +1,333 @@
+/* common.css */
+body {
+    font-family: "Nunito", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    color: #121212;
+}
+
+/* <uniquifier>: Use a unique and descriptive class name
+ <weight>: Use a value from 200 to 1000*/
+
+.nunito-font {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #E0E0E0;
+}
+
+ /* Light Mode (default) */
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+* Accent Colors */
+.dark-mode h1, .dark-mode h2, .dark-mode a{
+    color: #BB86FC; /* Lavender accent for headings */
+    
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 0 10px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+}
+footer {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    text-decoration-color: #121212;
+    text-align: center;
+}
+
+/* Left side */
+.left-nav {
+    display: flex;
+}
+
+/* Right side */
+.right-nav {
+    display: flex;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+/*    margin: 0;
+    display: flex;*/
+}
+
+nav ul li {
+/*    margin-right: 20px;*/
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #696969;
+    color: white;
+    text-decoration: none;
+    /*border-radius: 5px;*/
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    border-color: transparent;
+
+    &:hover {
+        color: rgb(2, 164, 170);
+        text-decoration: none;
+      }
+}
+
+/* Make sure every row of cards appears in a new line */
+.card-row + .card-row {
+    margin-top: 20px;
+}
+
+/* Dropdown button styling */
+.dropbtn {
+    background-color: #696969;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(2, 164, 170);
+        text-decoration: none;
+      }
+}
+  
+/* Container for dropdown items */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+  
+/* Hidden dropdown content initially */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    /*min-width: 160px;*/
+    width: 90%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+    
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+  
+.dropdown:hover .dropbtn {
+   background-color: #696969;
+}
+
+/* Individual dropdown items */
+.dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content p:hover {
+    background-color: #ddd;
+}
+
+/* Dropdown content when shown */
+.dropdown-content.show {
+    display: block;
+    max-height: 500px; /* Limit the height when sliding in */
+}
+  
+  /* Style for selected file type */
+  #selectedType {
+    margin-top: 10px;
+    font-weight: lighter;
+    color: #333;
+}
+
+a {
+    /* Basic styling */
+    color: rgb(99, 100, 100);
+    text-decoration: none;
+    font-weight: bold;
+  
+    /* Hover effect */
+    &:hover {
+      color: rgb(2, 164, 170);
+      text-decoration: none;
+    }
+  }
+
+.toggle-link {
+    display: block;
+    margin-top: 10px;
+    color: #4800bb;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.error, .message {
+    margin-top: 10px;
+    color: red;
+}
+
+.form-group {
+    margin: 15px 0;
+}
+
+/* Container for each progress bar */
+.progress-container {
+    width: 60%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    height: 30px;
+}
+
+/* Styling for each progress bar */
+.progress-bar {
+    height: 100%;
+    text-align: center;
+    color: white;
+    line-height: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Specific colors for each progress bar */
+.bg-instagram {
+    background-color: #ee44b0;
+}
+
+.bg-tiktok {
+    background-color: #212422;
+}
+
+.bg-snapchat {
+    background-color: #dccb35;
+    color: black;
+}
+
+.bg-youtube {
+    background-color: #bd1515;   
+}
+
+/*color for status progress bars*/
+.bg-ig-status, .bg-tt-status, .bg-sc-status, .bg-yt-status {
+    background-color: #29bd15;
+    color: black;            
+}
+
+.badges-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.badge {
+    padding: 20px 20px;
+    background-color: #A5678E;
+    margin: 0 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.badge.locked {
+    background-color: #ccc;
+}

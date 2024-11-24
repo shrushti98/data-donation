@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email/User</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <style></style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="login.html">Login</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+<main>
+    <h2>Verify Email</h2>
+<form id="otpVerificationForm">
+    <input id="otpEmail" type="email" placeholder="Email" required />
+    <input id="otpCode" type="text" placeholder="OTP" required />
+    <button id="verify" type="submit" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+        Verify</button>
+    <p id="otpErrorMessage"></p>
+</form>
+</main>
+<footer>
+    <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+</footer>
+<script>
+
+
+    // OTP Verification
+    const API_URL = 'http://3.12.198.71:5000'; // Replace with your EC2 public IP
+    document.getElementById('otpVerificationForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        //alert('Entered the main code!');
+        //Checks if user is logged in
+        //const username = checkSession();
+        //if (!username) return; // Stop if session is invalid
+
+        const email = document.getElementById('otpEmail').value;
+        const otp = document.getElementById('otpCode').value;
+        //alert('Entered 2nd loop!');
+        try {
+            const response = await fetch(`${API_URL}/verify-registration`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, otp }),
+            });
+            //alert('Entered 3rd loop!');
+            const data = await response.json();
+            if (response.ok) {
+                alert('Verification successful! You can now log in.');
+                window.location.href = 'login.html'; // Redirect to login page
+            } else {
+                document.getElementById('otpErrorMessage').innerText = data.error || 'Verification failed.';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('otpErrorMessage').innerText = 'An error occurred.';
+        }
+    });
+</script>
+</body>
+</html>

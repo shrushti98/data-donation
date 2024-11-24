@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Donation Platform</title>
+    <!--<link rel="stylesheet" href="common.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: "Nunito", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+    
+        #annotation-container {
+            display: flex;
+            width: 95%;
+            height: 90vh;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    
+        #user-list {
+            width: 25%;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+    
+        #contacts {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+    
+        #contacts li {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
+        #contacts input[type="radio"] {
+        margin-left: 5px; /* Adds extra space between the text and the radio button */
+        margin-right: 50px;
+        }
+    
+        #chat-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        #chat-header {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            background-color: #f1f1f1;
+        }
+    
+        #messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+    
+        .message {
+            margin-bottom: 10px;
+            display: flex;
+        }
+    
+        .message.self .content {
+            background-color: #d5c6f8;
+            margin-left: auto;
+        }
+    
+        .message.other .content {
+            background-color: #a8a8a8;
+            border: 1px solid #ddd;
+        }
+    
+        .content {
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 60%;
+        }
+    
+        #annotation-options {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            background-color: #f1f1f1;
+        }
+    
+        #annotation-options div {
+            margin-bottom: 10px;
+        }
+    
+        textarea {
+            width: 100%;
+            resize: none;
+        }
+    
+        </style>
+</head>
+<body><!--
+    <header>
+        <nav>
+            <ul>
+                <div class="left-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="instruction.html">Instruction</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </div>
+                <div class="right-nav">                   
+                        <li><button onclick="enableDarkMode()">
+                            <i class="fas fa-moon fa-fade" style="color: #0b0047"></i>
+                        </button></li>
+                        <li><button onclick="enableLightMode()">
+                            <i class="fas fa-sun fa-flip" style="color:rgb(216, 216, 3)"></i>
+                        </button></li>
+                </div>
+            </ul>
+        </nav>
+    </header>-->
+
+    <!-- Main Content 
+    <main>-->
+        <div id="annotation-container">
+            <!-- Sidebar for contacts -->
+            <div id="user-list">
+                <h2>Contacts</h2>
+                <ul id="contacts">
+                    <!-- Contacts loaded from JSON data will go here -->
+                </ul>
+            </div>
+    
+            <!-- Chat display and annotation options -->
+            <div id="chat-box">
+                <div id="chat-header">
+                    <h2 id="chat-with">&nbsp;&nbsp; Conversation</h2>
+                </div>
+                <div id="messages"></div>
+    
+                <!-- Annotation options for messages -->
+                <div id="annotation-options">
+                    <!--<div>
+                        <label>Message Safety:</label>
+                        <input type="radio" name="message-safety" value="safe"> Safe
+                        <input type="radio" name="message-safety" value="unsafe"> Unsafe
+                    </div>
+                    <div>
+                        <label>Risk Type:</label>
+                        <select id="risk-type">
+                            <option value="">Select</option>
+                            <option value="spam">Spam</option>
+                            <option value="harassment">Harassment</option>
+                            <option value="phishing">Phishing</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Severity:</label>
+                        <input type="range" id="severity" min="1" max="10">
+                    </div>
+                    <div>
+                        <label>Extra Context:</label>
+                        <textarea id="extra-context" rows="3" placeholder="Add extra details..."></textarea>
+                    </div>-->
+                    <button id="save-annotation" style="display: inline-block; padding: 10px 20px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+                        Save Annotation</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="phase2.html" style="display: inline-block; padding: 8px 10px; background-color: #696969; color: white; text-decoration: none; font-size: 17px;">
+                            Next</a>
+                </div>
+            </div>
+        </div>
+    
+    <!--
+    </main>
+    <footer>
+        <p style="color:#383838">&copy; 2024 Data Donation Platform. All rights reserved.</p>
+    </footer>-->
+
+    <script>
+            document.addEventListener("DOMContentLoaded", () => {
+            // Hardcoded sample data for users and messages
+            const sampleData = {
+                users: [
+                    { id: 1, name: "Alice" },
+                    { id: 2, name: "Bob" },
+                    { id: 3, name: "Charlie" }
+                ],
+                messages: [
+                    { sender: "self", recipient: "Alice", text: "Hi Alice! How are you?" },
+                    { sender: "Alice", recipient: "self", text: "I'm good, thanks! How about you?" },
+                    { sender: "self", recipient: "Alice", text: "I'm doing well! Just working on a project." },
+                    { sender: "Alice", recipient: "self", text: "That’s great! Let me know if you need help." },
+                    { sender: "Bob", recipient: "self", text: "Hey! Have you seen the new movie yet?" },
+                    { sender: "self", recipient: "Bob", text: "Not yet, planning to this weekend!" },
+                    { sender: "Charlie", recipient: "self", text: "Can you send me the project files?" },
+                    { sender: "self", recipient: "Charlie", text: "Yes sure." }
+                ]
+            };
+
+            // Display contacts and add click event to load chat
+            displayContacts(sampleData.users);
+
+            // Display contacts in the sidebar
+            function displayContacts(users) {
+                const contacts = document.getElementById("contacts");
+                contacts.innerHTML = "";
+                users.forEach(user => {
+                    const li = document.createElement("li");
+                    li.textContent = user.name;
+                    li.classList.add("contact");
+
+                    // Safety annotation for each user
+                    const safeOption = document.createElement("input");
+                    safeOption.type = "radio";
+                    safeOption.name = `user-${user.id}-safety`;
+                    safeOption.value = "safe";
+                    const unsafeOption = document.createElement("input");
+                    unsafeOption.type = "radio";
+                    unsafeOption.name = `user-${user.id}-safety`;
+                    unsafeOption.value = "unsafe";
+                    
+                    li.append(" Safe", safeOption, "Unsafe", unsafeOption);
+
+                    // Add click event to load messages for the selected contact
+                    li.addEventListener("click", () => {
+                        document.getElementById("chat-with").textContent = `Chat with ${user.name}`;
+                        displayMessages(sampleData.messages, user.name);
+                    });
+
+                    contacts.appendChild(li);
+                });
+            }
+
+            // Display messages for the selected contact
+            function displayMessages(messages, contactName) {
+                const messagesContainer = document.getElementById("messages");
+                messagesContainer.innerHTML = "";
+
+                // Filter messages between "self" and the selected contact
+                const filteredMessages = messages.filter(msg =>
+                    (msg.sender === "self" && msg.recipient === contactName) ||
+                    (msg.sender === contactName && msg.recipient === "self")
+                );
+
+                filteredMessages.forEach(msg => {
+                    const messageElem = document.createElement("div");
+                    messageElem.classList.add("message", msg.sender === "self" ? "self" : "other");
+
+                    const contentElem = document.createElement("div");
+                    contentElem.classList.add("content");
+                    contentElem.textContent = msg.text;
+
+                    messageElem.appendChild(contentElem);
+                    messagesContainer.appendChild(messageElem);
+
+                    // Add click event to annotate message
+                    messageElem.addEventListener("click", () => {
+                        selectMessageForAnnotation(msg);
+                    });
+                });
+            }
+
+            function selectMessageForAnnotation(message) {
+                // Reset annotation form fields
+                document.querySelector('input[name="message-safety"]').checked = false;
+                document.getElementById("risk-type").value = "";
+                document.getElementById("severity").value = 5;
+                document.getElementById("extra-context").value = "";
+            }
+
+            // Save annotation
+            document.getElementById("save-annotation").addEventListener("click", () => {
+                const safety = document.querySelector('input[name="message-safety"]:checked')?.value;
+                const riskType = document.getElementById("risk-type").value;
+                const severity = document.getElementById("severity").value;
+                const extraContext = document.getElementById("extra-context").value;
+
+                const annotation = {
+                    safety,
+                    riskType,
+                    severity,
+                    extraContext,
+                };
+
+                console.log("Saved annotation:", annotation);
+                // Send the annotation to the backend (not implemented here)
+            });
+        });
+
+
+    </script>
+    <!--
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>
+    <script src="script\script.js"></script>-->
+</body>
+</html>
